@@ -25,6 +25,19 @@ var OnFMReady = (function () {
                 FileMaker.PerformScript(name, parameter);
             });
         }
+
+        /**
+         * Execute a FileMaker script if a string is supplied, otherwise 
+         * execute a JavaScript function
+         * @param  {...any} args 
+         */
+        static run(...args) {
+            if (typeof args[0] === 'string') {
+                this.runScript(args[0], args[1]);
+            } else {
+                this.runFunction(...args);
+            }
+        }
     }
 
     return OnFMReady;

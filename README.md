@@ -4,19 +4,45 @@
 ## Introduction
  FileMaker 19 introduced new JavaScript interaction between the web viewer layout object and the FileMaker solution. Developers can call FileMaker scripts from their JavaScript code using `FileMaker.PerformScript()`, but must wait for the `FileMaker` class to be injected before doing so.
  
- onfmready.js streamlines the process of waiting for the `FileMaker` class by providing two functions:  
+ onfmready.js streamlines the process of waiting for the `FileMaker` class by providing three functions:  
+  * `OnFMReady.run()`
+    * Implicitly run either a FileMaker script or JavaScript function.
   * `OnFMReady.runScript()`
-    * Run a FileMaker script after the `FileMaker` class is made available
+    * Explicitly run a FileMaker script after the `FileMaker` class is made available
   * `OnFMReady.runFunction()`
-    * Run a JavaScript function after the `FileMaker` class is made available
+    * Explicitly run a JavaScript function after the `FileMaker` class is made available
+ 
+ Both the `run()` and `runFunction()` methods accept an unlimited number of arguments after the callback, so you are free to use them with any existing methods.
     
 ## Install
  To install the module, simply include it in the `<head>` tag of your document like so:
  ```html
  <script src="onfmready.min.js" type="text/javascript"></script>
  ```
-## Usage
- The module can be used to call either a FileMaker script or a JavaScript function once the `FileMaker` class is loaded:
+
+## Implicit Usage
+ The easiest way to use OnFMReady is to use the `OnFMReady.run()` method, which will call a FileMaker script or JavaScript function depending on what type of object is passed in the argument:
+
+ **FileMaker Script**
+ ```javascript
+ OnFMReady.run('my_script_name', 'my_script_parameter');
+ ```
+  **JavaScript Function**
+ ```javascript
+ var myFunction = function(message) {
+ 	console.log(message);
+ };
+ OnFMReady.run(myFunction, 'Hello, world!');
+
+ /* ---- OR ---- */
+
+ OnFMReady.run((message) => {
+     console.log(message);
+ }, 'Hello, world!');
+ ```
+
+## Explicit Usage
+ If, for some reason, you wish to explicitly define the type of execution taking place, you can use the following methods to execute your script or function:
  
  **FileMaker Script**
  ```javascript
@@ -24,9 +50,6 @@
  ```
  **JavaScript Function**
  ```javascript
- var myFunction = function(message) {
- 	console.log(message);
- };
  OnFMReady.runFunction(myFunction, 'Hello, world!');
  ```
 ## License
