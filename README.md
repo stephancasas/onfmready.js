@@ -19,6 +19,10 @@
  ```html
  <script src="onfmready.min.js" type="text/javascript"></script>
  ```
+ >**Beginner Tip**
+ >
+ >If you copy/paste this line for installation, be sure that you've placed the `onfmready.min.js` file in the same directory as the `.html` file in which you intend to use it. Otherwise, edit the `src` attribute of the `<script>` tag to specify the correct file path.
+ > * For futher reading on absolute and relative resource paths in HTML, consider [this article from W3Schools](https://www.w3schools.com/html/html_filepaths.asp).
 
 ## Implicit Usage
  The easiest way to use OnFMReady is to use the `OnFMReady.run()` method, which will call a FileMaker script or JavaScript function depending on what type of object is passed in the argument:
