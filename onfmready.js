@@ -7,7 +7,6 @@ var OnFMReady = (function () {
          */
         static runFunction(callback, ...args) {
             let interval = setInterval(() => {
-                console.log('wait');
                 if (typeof FileMaker === 'object') {
                     clearInterval(interval);
                     callback.call(this, ...args);
