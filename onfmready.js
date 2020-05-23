@@ -11,7 +11,7 @@ var OnFMReady = (function () {
                     clearInterval(interval);
                     callback.call(this, ...args);
                 }
-            });
+            }, 100);
         }
 
         /**
