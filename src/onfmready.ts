@@ -2,7 +2,7 @@
   type FileMaker = typeof DEFAULT;
   type WebViewer = Window & typeof globalThis & { FileMaker?: FileMaker };
   type OnFMReady = {
-    respondWith: { [key: string]: Function | undefined };
+    respondTo: { [key: string]: Function | undefined };
     noLogging: boolean;
     unmount: boolean;
   };
@@ -49,7 +49,7 @@
 
   // set default -- preserve existing
   $wnd.OnFMReady = Object.assign(
-    { respondWith: {}, noLogging: false, unmount: false },
+    { respondTo: {}, noLogging: false, unmount: false } as OnFMReady,
     $wnd.OnFMReady
   );
 
@@ -71,7 +71,7 @@
 
   // fallback utility
   const utility: (...args: FmScriptArgs) => any = (script, param, option) => {
-    const responder = $wnd.OnFMReady.respondWith[script];
+    const responder = $wnd.OnFMReady.respondTo[script];
     return responder
       ? responder(param, option)
       : $wnd.OnFMReady.noLogging

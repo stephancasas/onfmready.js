@@ -29,17 +29,17 @@ To install the helper, include it as the **first** linked `<script>` in the `<he
 ### CDN
 
 ```html
-<script src="https://unpkg.com/onfmready.js@2.0.0/dist/onfmready.min.js"></script>
+<script src="https://unpkg.com/onfmready.js@2.0.1/dist/onfmready.min.js"></script>
 ```
 > :pencil: **NOTE:** Versioning
 >
-> It is recommended that you pin a version number (shown as `@2.0.0`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
+> It is recommended that you pin a version number (shown as `@2.0.1`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
 
 ### Inline Code
 
 ```html
 <script>
-    !function(e){"function"==typeof define&&define.amd?define(e):e()}((function(){"use strict";(()=>{let e,t=[];const n=window,i=()=>{if(!e){const e=new Event("filemaker-ready");n.dispatchEvent(e),document.dispatchEvent(e)}const t=Object.assign(new Event("filemaker-expected"),{filemaker:!e,FileMaker:!e});n.dispatchEvent(t),document.dispatchEvent(t)};if("object"==typeof n.FileMaker)return void setTimeout(i);n.OnFMReady=Object.assign({respondWith:{},noLogging:!1,unmount:!1},n.OnFMReady);const o={PerformScript:(e,t)=>o.PerformScriptWithOption(e,t),PerformScriptWithOption:(n,i,o=0)=>{e?r(n,i,o):t.push([n,i,o])}},r=(e,t,i)=>{const o=n.OnFMReady.respondWith[e];return o?o(t,i):n.OnFMReady.noLogging?null:console.log(Object.assign({script:e,param:t},i?{option:i}:{}))};let c,d,s=o;document.addEventListener("DOMContentLoaded",(()=>{s=null,d=!0,setTimeout((()=>{setTimeout((()=>{}))}))})),Object.defineProperty(window,"FileMaker",{set(e){s=e,d=!1,clearTimeout(c),void 0!==e&&setTimeout((()=>{t.forEach((e=>{s.PerformScriptWithOption(...e)})),t=[],i()}))},get:()=>(d&&(c=setTimeout((()=>{e=!0,n.FileMaker=n.OnFMReady.unmount?void 0:o}))),s)})})()}));
+    !function(e){"function"==typeof define&&define.amd?define(e):e()}((function(){"use strict";(()=>{let e,t=[];const n=window,o=()=>{if(!e){const e=new Event("filemaker-ready");n.dispatchEvent(e),document.dispatchEvent(e)}const t=Object.assign(new Event("filemaker-expected"),{filemaker:!e,FileMaker:!e});n.dispatchEvent(t),document.dispatchEvent(t)};if("object"==typeof n.FileMaker)return void setTimeout(o);n.OnFMReady=Object.assign({respondTo:{},noLogging:!1,unmount:!1},n.OnFMReady);const i={PerformScript:(e,t)=>i.PerformScriptWithOption(e,t),PerformScriptWithOption:(n,o,i=0)=>{e?r(n,o,i):t.push([n,o,i])}},r=(e,t,o)=>{const i=n.OnFMReady.respondTo[e];return i?i(t,o):n.OnFMReady.noLogging?null:console.log(Object.assign({script:e,param:t},o?{option:o}:{}))};let c,d,s=i;document.addEventListener("DOMContentLoaded",(()=>{s=null,d=!0,setTimeout((()=>{setTimeout((()=>{}))}))})),Object.defineProperty(window,"FileMaker",{set(e){s=e,d=!1,clearTimeout(c),void 0!==e&&setTimeout((()=>{t.forEach((e=>{s.PerformScriptWithOption(...e)})),t=[],o()}))},get:()=>(d&&(c=setTimeout((()=>{e=!0,n.FileMaker=n.OnFMReady.unmount?void 0:i}))),s)})})()}));
 </script>
 ```
 
