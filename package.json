@@ -1,0 +1,36 @@
+{
+    "name": "onfmready.js",
+    "version": "2.0.0",
+    "description": "A developer utility for working with the FileMaker web viewer JS object in FileMaker Pro/WebDirect.",
+    "main": "./dist/onfmready.min.js",
+    "files": [
+        "dist/**/*.js"
+    ],
+    "scripts": {
+        "prepublishOnly": "npm run build",
+        "build": "npm run transpile && npm run minify",
+        "transpile": "tsc",
+        "minify": "rollup -c"
+    },
+    "keywords": [
+        "filemaker",
+        "webdirect",
+        "web_viewer"
+    ],
+    "author": "Stephan Casas <stephancasas@icloud.com>",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/stephancasas/onfmready.js"
+    },
+    "bugs": {
+        "email": "stephancasas@icloud.com",
+        "url": "https://github.com/stephancasas/onfmready.js"
+    },
+    "homepage": "https://github.com/stephancasas/onfmready.js#readme",
+    "license": "MIT",
+    "devDependencies": {
+        "rollup": "^2.56.3",
+        "rollup-plugin-terser": "^7.0.2",
+        "typescript": "^4.4.2"
+    }
+}
