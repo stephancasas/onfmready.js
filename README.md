@@ -33,7 +33,7 @@ To install the helper, include it as the **first** linked `<script>` in the `<he
 ```
 > :pencil: **NOTE:** Versioning
 >
-> It is recommended that you pin a version number (shown as `@2.0.1`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
+> It is recommended that you pin a version number (shown as `@2.0.0`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
 
 ### Inline Code
 
