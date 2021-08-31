@@ -1,10 +1,10 @@
 # OnFMReady.js
 
-OnFMReady is a developer utility for working with the `FileMaker` web viewer JavaScript object in FileMaker Pro/WebDirect. This is version 2.0 of the utility. If you're looking for version 1.0, it's [here](https://www.github.com/stephancasas/onfmready.js/archive).
+OnFMReady is a developer utility for working with the `FileMaker` web viewer JavaScript object in FileMaker Pro/WebDirect. This is version 2.0 of the utility. If you're looking for version 1.0, it's [here](https://github.com/stephancasas/onfmready.js/tree/master/archive).
 
 > **What happened to version 1.0?**
 >
-> As stated above, you can still get version 1.0 of OnFMReady [here](https://www.github.com/stephancasas/onfmready.js/archive), but if you read its updated documentation or the documentation for version 2.0, I'm sure you'll agree that the newer version is much better. If you'd like to know more about what's changed, continue reading below.
+> As stated above, you can still get version 1.0 of OnFMReady [here](https://github.com/stephancasas/onfmready.js/tree/master/archive), but if you read its updated documentation or the documentation for version 2.0, I'm sure you'll agree that the newer version is much better. If you'd like to know more about what's changed, continue reading below.
 
 ## Introduction
 
