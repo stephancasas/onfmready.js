@@ -159,7 +159,7 @@
   });
 
   Object.defineProperty(window, 'FileMaker', {
-    set(value: any) {
+    set(value: FileMaker | null) {
       STORE = value;
       awaitingSet = false;
 
@@ -169,7 +169,7 @@
       clearTimeout(fallback);
 
       // do not continue if unmounted
-      if (value === undefined) return;
+      if (value == undefined) return;
 
       // call scripts after fm injection is done
       setTimeout(() => {
