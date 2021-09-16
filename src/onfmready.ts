@@ -14,6 +14,55 @@
   type FmScriptArgs = ArgsOf<typeof DEFAULT.PerformScriptWithOption>;
   type FmExpectedEvent = Event & { filemaker: boolean; FileMaker: boolean };
 
+  /* #region Microsoft Internet Explorer 11 Support */
+  if (typeof Object.assign != 'function') {
+    /*--- Polyfill / Object.assign() ---*/
+    Object.defineProperty(Object, 'assign', {
+      // @ts-ignore -- read in `arguments` keyword
+      value: function assign(target: any, varArgs: object) {
+        if (target == null) {
+          throw new TypeError('Cannot convert undefined or null to object');
+        }
+        var to = Object(target);
+        for (var index = 1; index < arguments.length; index++) {
+          var nextSource = arguments[index];
+          if (nextSource != null) {
+            for (var nextKey in nextSource) {
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey];
+              }
+            }
+          }
+        }
+        return to;
+      },
+      writable: true,
+      configurable: true
+    });
+
+    /*--- Polyfill / Event() and CustomEvent() ---*/
+    function CustomEvent(event: string, params: any) {
+      params = params || {
+        bubbles: false,
+        cancelable: false,
+        detail: undefined
+      };
+      var evt = document.createEvent('Event');
+      evt.initEvent(event, params.bubbles, params.cancelable);
+      Object.defineProperty(evt, 'detail', { value: params.detail });
+      return evt;
+    }
+
+    CustomEvent.prototype = window.Event.prototype;
+
+    // @ts-ignore
+    window.CustomEvent = CustomEvent;
+    // @ts-ignore
+    window.Event = CustomEvent;
+
+  }
+  /* #endregion */
+
   // deferred fm script requests
   let deferred: Array<any> = [];
 
