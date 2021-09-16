@@ -9,10 +9,18 @@
     noLogging: boolean;
     unmount: boolean;
   };
+  type IexploreSupport = {
+    resolver: Function;
+    stash: boolean;
+  };
   type WebViewerExt = WebViewer & { OnFMReady: OnFMReady };
   type ArgsOf<F> = F extends (...args: infer T) => unknown ? T : never;
   type FmScriptArgs = ArgsOf<typeof DEFAULT.PerformScriptWithOption>;
   type FmExpectedEvent = Event & { filemaker: boolean; FileMaker: boolean };
+
+  // extract for ts typing
+  const $wnd = <WebViewerExt>window;
+  let iexplore: IexploreSupport | undefined;
 
   /* #region Microsoft Internet Explorer 11 Support */
   if (typeof Object.assign != 'function') {
@@ -60,6 +68,22 @@
     // @ts-ignore
     window.Event = CustomEvent;
 
+    // from webscripting.js
+    const FM_CONTEXT_TEST: string = 'if (window.FileMaker != null)';
+
+    /*--- Context Resolution ---*/
+    iexplore = {
+      resolver: () => {
+        try {
+          // known path to webscripting.js context
+          const caller = iexplore!.resolver.caller.caller.toString();
+          iexplore!.stash = caller.indexOf(FM_CONTEXT_TEST) >= 0;
+        } catch (ex) {
+          iexplore!.stash = false;
+        }
+      },
+      stash: false
+    };
   }
   /* #endregion */
 
@@ -68,9 +92,6 @@
 
   // final fm object disposition
   let unfulfilled: boolean;
-
-  // extract for ts typing
-  const $wnd = <WebViewerExt>window;
 
   // utility events
   const events = () => {
@@ -142,10 +163,14 @@
   // waiting for fm injection
   let awaitingSet: boolean;
 
-  // fm injection occurs at next tick after doc is loaded
+  // webkit: fm injection occurs at next tick after doc is loaded
+  // msie11: fm injection occurs right before 'domcontentloaded'
   document.addEventListener('DOMContentLoaded', () => {
-    STORE = null;
-    awaitingSet = true;
+    // not using ie11, or using ie11 and fm did not inject
+    if (!iexplore || (!!iexplore && !iexplore.stash)) {
+      STORE = null;
+      awaitingSet = true;
+    }
 
     // force getter routine to evaluate fallback
     setTimeout(() => {
@@ -186,7 +211,16 @@
       });
     },
     get() {
+      // using ie11, not stashing from fm, not awaiting set default
+      if (iexplore && !iexplore.stash && !awaitingSet) {
+        iexplore.resolver();
+        if (iexplore.stash) return null;
+      }
+
       if (awaitingSet) {
+        // do not continue to evaluate ie11 logic
+        iexplore = undefined;
+
         //TODO: that's cheating, but it's late, and i'm tired
         fallback = <any>setTimeout(() => {
           /*--- MS: FILEMAKER DID NOT INJECT ---*/
