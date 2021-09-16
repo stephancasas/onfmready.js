@@ -173,9 +173,11 @@
 
       // call scripts after fm injection is done
       setTimeout(() => {
+        const str = STORE as FileMaker;
+        const dispatcher = str?.PerformScriptWithOption || str.PerformScript;
         // perform and clear deferred script calls
         deferred.forEach((d) => {
-          (STORE as FileMaker).PerformScriptWithOption(...(d as FmScriptArgs));
+          dispatcher(...(d as FmScriptArgs));
         });
         deferred = [];
 
