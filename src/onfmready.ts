@@ -1,5 +1,8 @@
 (() => {
-  type FileMaker = typeof DEFAULT;
+  type FileMaker = {
+    PerformScript: Function;
+    PerformScriptWithOption?: Function;
+  };
   type WebViewer = Window & typeof globalThis & { FileMaker?: FileMaker };
   type OnFMReady = {
     respondTo: { [key: string]: Function | undefined };
