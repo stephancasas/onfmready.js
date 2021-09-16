@@ -1,6 +1,8 @@
 archive/
 src/
+scripts/
 .gitattributes
 rollup.config.js
 tsconfig.json
+tsconfig.es5.json
 package-lock.json

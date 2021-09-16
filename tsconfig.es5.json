@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "es2020",
-    "outDir": "./dist/es2020",
+    "target": "es5",
+    "module": "umd",
+    "outDir": "./dist/es5",
     "moduleResolution": "node",
     "removeComments": false,
     "noImplicitAny": true,
@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types"]
   },
   "include": ["./src/**/*.ts"]

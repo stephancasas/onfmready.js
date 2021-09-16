@@ -8,9 +8,14 @@
     ],
     "scripts": {
         "prepublishOnly": "npm run build",
-        "build": "npm run transpile && npm run minify",
-        "transpile": "tsc",
-        "minify": "rollup -c"
+        "build": "npm run transpile:es2020 && npm run transpile:es5 && npm run unsupport && npm run collapse && npm run minify",
+        "minify": "rollup -c",
+        "unsupport": "node scripts/unsupport.js",
+        "collapse": "node scripts/collapse.js",
+        "build:es2020": "npm run transpile:es2020 && npm run unsupport && npm run collapse",
+        "build:es5": "npm run transpile:es5 && npm run collapse",
+        "transpile:es2020": "tsc -p tsconfig.json",
+        "transpile:es5": "tsc -p tsconfig.es5.json"
     },
     "keywords": [
         "filemaker",
