@@ -9,6 +9,9 @@
     noLogging: boolean;
     unmount: boolean;
   };
+  type IexploreWebViewer = WebViewer & {
+    document: Document & { documentMode: number };
+  };
   type IexploreSupport = {
     resolver: Function;
     stash: boolean;
@@ -23,6 +26,7 @@
   let iexplore: IexploreSupport | undefined;
 
   /* #region Microsoft Internet Explorer 11 Support */
+  if (!!(window as IexploreWebViewer).document.documentMode) {
   if (typeof Object.assign != 'function') {
     /*--- Polyfill / Object.assign() ---*/
     Object.defineProperty(Object, 'assign', {
