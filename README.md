@@ -32,14 +32,14 @@ To install the helper, include it as the **first** linked `<script>` in the `<he
 
 ```html
 <!-- Without Support for Obsolete Web Browsers That Won't Die -->
-<script src="https://unpkg.com/onfmready.js@2.1.1/dist/onfmready.min.js"></script>
+<script src="https://unpkg.com/onfmready.js@2.1.11/dist/onfmready.min.js"></script>
 
 <!-- With Support for Microsoft Internet Explorer 11 -->
-<script src="https://unpkg.com/onfmready.js@2.1.1/dist/onfmready.es5.min.js"></script>
+<script src="https://unpkg.com/onfmready.js@2.1.11/dist/onfmready.es5.min.js"></script>
 ```
 > :pencil: **NOTE:** Versioning
 >
-> It is recommended that you pin a version number (shown as `@2.1.1`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
+> It is recommended that you pin a version number (shown as `@2.1.11`) to prevent the introduction of potentially-breaking changes when updates are made to OnFMReady.
 
 ### Inline Code
 
