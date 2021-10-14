@@ -1,6 +1,6 @@
 {
     "name": "onfmready.js",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "A developer utility for working with the FileMaker web viewer JS object in FileMaker Pro/WebDirect.",
     "main": "./dist/onfmready.min.js",
     "files": [
