@@ -4,7 +4,7 @@
     "module": "umd",
     "outDir": "./dist/es5",
     "moduleResolution": "node",
-    "removeComments": false,
+    "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
